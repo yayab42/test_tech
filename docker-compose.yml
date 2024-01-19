@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - ./test_tech:/app
+    ports:
+      - "8000:8000"
+    tty: true
+    stdin_open: true
