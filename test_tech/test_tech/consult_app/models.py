@@ -1,34 +1,53 @@
+from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 
-class User(AbstractUser):
-    is_patient = models.BooleanField(default=False)
-    is_doctor = models.BooleanField(default=False)
+class AppUser(models.Model):
+    USER_TYPE_CHOICES = [
+        ('patient', 'Patient'),
+        ('doctor', 'Doctor'),
+    ]
 
-
-class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    patient_id = models.CharField(max_length=20, unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
-    address = models.TextField()
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+
+    def __str__(self):
+        return f"{self.user.username} ({self.user_type})"
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    app_user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name} {self.surname}"
+
+
+class Patient(models.Model):
+    app_user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    email = models.EmailField()
+    address = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} {self.surname}"
 
 
 class Consultation(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    date = models.DateField()
-    description = models.TextField()
-    type_choices = [
+    TYPE_CHOICES = [
         ('visite', 'Visite'),
         ('suivi', 'Suivi'),
         ('operation', 'Opération'),
     ]
-    consultation_type = models.CharField(max_length=10, choices=type_choices)
+
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    date = models.DateTimeField()
+    description = models.TextField()
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+
+    def __str__(self):
+        return f"{self.name} ({self.type}) - {self.patient.app_user.user.username} - {self.doctor.app_user.user.username}"
