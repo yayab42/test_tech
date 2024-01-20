@@ -15,6 +15,15 @@ class AppUser(models.Model):
         return f"{self.user.username} ({self.user_type})"
 
 
+class Address(models.Model):
+    postal_code = models.CharField(max_length=20)
+    city = models.CharField(max_length=100)
+    address = models.TextField()
+
+    def __str__(self):
+        return f"{self.address}, {self.postal_code} {self.city}"
+
+
 class Doctor(models.Model):
     app_user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=100)
@@ -29,7 +38,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
     email = models.EmailField()
-    address = models.TextField()
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} {self.surname}"
