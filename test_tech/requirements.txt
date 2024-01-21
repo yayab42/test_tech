@@ -1,7 +1,5 @@
 Django==4.2
 django-select2==8.1.2
 django-bootstrap-v5
-logging
 requests
 faker
-
