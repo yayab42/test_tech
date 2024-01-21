@@ -11,6 +11,9 @@ class AppUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
 
+    class Meta:
+        app_label = 'consult_app'
+
     def __str__(self):
         return f"{self.user.username} ({self.user_type})"
 
