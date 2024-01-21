@@ -1,7 +1,7 @@
 import os
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_tech.test_tech.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_tech.settings')
 django.setup()
 
 import logging
@@ -96,6 +96,6 @@ def create_doctor():
 
 
 if __name__ == "__main__":
-    # create_fake_patients(5000)
+    create_fake_patients(5000)
     create_doctor()
     print("Done")
