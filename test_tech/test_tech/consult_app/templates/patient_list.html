@@ -14,19 +14,19 @@
                 <p class="card-text"><strong>Email:</strong> {{ patient.email }}</p>
                 <p class="card-text"><strong>Adresse:</strong> {{ patient.address }}</p>
                 <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal{{ patient.username }}">Modifier</a>
+                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal{{ patient.app_user.user.username }}">Modifier</a>
 
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ patient.username }}">
+                  <button type="button" class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ patient.app_user.user.username }}">
                     Supprimer
                   </button>
 
                   <!-- Modal -->
-                  <div class="modal fade" id="confirmDeleteModal{{ patient.username }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ patient.username }}" aria-hidden="true">
+                  <div class="modal fade" id="confirmDeleteModal{{patient.app_user.user.username }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ patient.app_user.user.username }}" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="confirmDeleteModalLabel{{ patient.username }}">Confirmation de suppression</h5>
+                          <h5 class="modal-title" id="confirmDeleteModalLabel{{ patient.app_user.user.username }}">Confirmation de suppression</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
