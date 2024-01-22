@@ -46,15 +46,15 @@
           </div>
 
         <!-- update modal -->
-<div class="modal fade" id="updateModal{{ patient.username }}" tabindex="-1" aria-labelledby="updateModalLabel{{ patient.username }}" aria-hidden="true">
+<div class="modal fade" id="updateModal{{ patient.app_user.user.username }}" tabindex="-1" aria-labelledby="updateModalLabel{{ patient.app_user.user.username }}" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateModalLabel{{ patient.username }}">Modifier le patient {{ patient.name }} {{ patient.surname }}</h5>
+        <h5 class="modal-title" id="updateModalLabel{{ patient.app_user.user.username }}">Modifier le patient {{ patient.name }} {{ patient.surname }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="updatePatientForm{{ patient.username }}" method="post" action="{% url 'patient-update' username=patient.app_user.user.username %}">
+        <form id="updatePatientForm{{ patient.app_user.user.username }}" method="post" action="{% url 'patient-update' username=patient.app_user.user.username %}">
           {% csrf_token %}
           <label for="id_name">Nom :</label>
           <input type="text" id="id_name" name="name" value="{{ patient.name }}" required>
