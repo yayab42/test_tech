@@ -1,6 +1,5 @@
 This app is a POC made for a technical test in Django and docker. <br/>
-It's supposed to let you log in either as a Doctor or a Patient. While patient will only have a simple view which contains their informations and consultations, <br/>
-Doctors can display every patient present in DB, add, delete or update them and do the same for their consultations <br/>
+It's supposed to let you log in either as a Doctor or a Patient. While patient will only have a simple view which contains their informations and consultations, doctors can display every patient present in DB, add, delete or update them and do the same for their consultations. <br/>
 
 Requirements : <br/>
   -Docker-compose <br/>
@@ -17,4 +16,6 @@ Then navigate to ```cd test_tech``` <br/>
   -select your user <br/>
   -modify password <br/>
 
--Now you can use the application at : http://localhost:8000/consult_app/
+-Now you can use the application at : http://localhost:8000/consult_app/  <br/>
+
+/!\ THIS APP IS NOT SUPPOSED TO BE RUN IN PRODUCTION MODE /!\
